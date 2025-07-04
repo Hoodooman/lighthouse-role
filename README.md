@@ -25,22 +25,15 @@ Example Playbook
 ----------------
 
 ```yaml
-- hosts: all
+- hosts: monitoring
   roles:
-    - role: vector
+    - role: lighthouse
       vars:
-        vector_sources:
-          syslog:
-            type: syslog
-            mode: tcp
-            address: "0.0.0.0:514"
-        vector_sinks:
-          clickhouse:
-            type: clickhouse
-            inputs: ["syslog"]
-            host: "clickhouse-server"
-            database: "logs"
-            table: "system_logs"
+        lighthouse_nginx_server_name: "lighthouse.example.com"
+        lighthouse_nginx_ssl_enabled: true
+        lighthouse_nginx_ssl_cert: "/etc/ssl/certs/lighthouse.crt"
+        lighthouse_nginx_ssl_key: "/etc/ssl/private/lighthouse.key"
+
 
 License
 -------
